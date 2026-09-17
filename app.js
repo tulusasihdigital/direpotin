@@ -1,4 +1,4 @@
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSdBjDmKwBsnkBtz-wF7mBEW5mhHlZhTT0IPY8Rlv0e8WlnFJQMxteqosgoVRmyCYlDNNx0NqgFnd49/pubhtml?gid=55893209&single=true";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSdBjDmKwBsnkBtz-wF7mBEW5mhHlZhTT0IPY8Rlv0e8WlnFJQMxteqosgoVRmyCYlDNNx0NqgFnd49/pub?gid=55893209&single=true&output=csv";
 
 let DATA={monthly:[],pics:[]}, trendChart, rateChart;
 const $=id=>document.getElementById(id);
