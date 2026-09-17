@@ -2,7 +2,7 @@
 // Tempel URL CSV Google Sheets di sini.
 // Contoh:
 // const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/ID_SHEET/export?format=csv&gid=0";
-const SHEET_CSV_URL = "";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSdBjDmKwBsnkBtz-wF7mBEW5mhHlZhTT0IPY8Rlv0e8WlnFJQMxteqosgoVRmyCYlDNNx0NqgFnd49/pubhtml?gid=55893209&single=true";
 
 let DATA={monthly:[],pics:[]}, trendChart, rateChart;
 const $=id=>document.getElementById(id);
