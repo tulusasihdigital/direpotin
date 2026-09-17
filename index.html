@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qiscus Leads Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--blue:#1769e0;--ink:#142238;--muted:#718096;--bg:#f5f8fc;--card:#fff;--line:#e5ebf3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif}
+.wrap{max-width:1400px;margin:auto;padding:30px}
+header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:25px;gap:20px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.13em;color:var(--blue);text-transform:uppercase}
+h1{font-size:30px;letter-spacing:-.04em;margin:7px 0 4px}.sub{font-size:14px;color:var(--muted)}
+.status{font-size:12px;font-weight:700;background:#eaf2ff;color:#1451a4;padding:10px 14px;border-radius:12px}
+.filters{display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:12px;margin-bottom:18px}
+input,select,button{height:44px;border:1px solid var(--line);border-radius:11px;background:#fff;padding:0 13px;font:inherit;color:var(--ink)}
+button{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.card,.chart-card,.table-card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 18px rgba(20,45,80,.04)}
+.card{padding:20px}.label{font-size:12px;color:var(--muted);font-weight:600}.value{font-size:28px;font-weight:800;letter-spacing:-.04em;margin-top:7px}.delta{font-size:11px;color:var(--muted);margin-top:5px}
+.grid{display:grid;grid-template-columns:1.45fr 1fr;gap:16px;margin-bottom:18px}.chart-card{padding:20px;min-height:350px}.chart-title{font-weight:800;margin-bottom:15px}.chart-box{height:275px}
+.table-card{overflow:hidden}.table-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.pill{font-size:11px;font-weight:700;color:#1451a4;background:#edf4ff;border-radius:999px;padding:5px 9px}
+.table-wrap{overflow:auto;max-height:530px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:13px 16px;border-bottom:1px solid var(--line);white-space:nowrap;text-align:left}th{position:sticky;top:0;background:#fbfcfe;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.num{text-align:right;font-variant-numeric:tabular-nums}
+footer{padding:18px 2px;color:var(--muted);font-size:11px;line-height:1.6}
+code{background:#edf1f6;padding:2px 5px;border-radius:5px}
+@media(max-width:900px){.wrap{padding:18px}.filters{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+@media(max-width:560px){.filters,.cards{grid-template-columns:1fr}h1{font-size:25px}header{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div><div class="eyebrow">Performance Dashboard</div><h1>Qiscus Leads 2026</h1><div class="sub">Leads, closing & success rate dalam satu dashboard.</div></div><div class="status" id="status">Memuat data…</div></header>
+<section class="filters">
+<input id="search" placeholder="Cari PIC…">
+<select id="month"><option value="">Semua bulan</option></select>
+<select id="dataset"><option value="all">Semua PIC</option><option value="pics">PIC</option></select>
+<button id="reset">Reset</button>
+</section>
+<section class="cards">
+<div class="card"><div class="label">Total Leads</div><div class="value" id="totalLeads">—</div><div class="delta">periode terpilih</div></div>
+<div class="card"><div class="label">Closing</div><div class="value" id="totalClosing">—</div><div class="delta">total closing</div></div>
+<div class="card"><div class="label">Success Rate</div><div class="value" id="successRate">—</div><div class="delta">closing ÷ leads</div></div>
+<div class="card"><div class="label">Periode</div><div class="value" id="monthCount">—</div><div class="delta">bulan tersedia</div></div>
+</section>
+<section class="grid">
+<div class="chart-card"><div class="chart-title">Trend Leads & Closing</div><div class="chart-box"><canvas id="trend"></canvas></div></div>
+<div class="chart-card"><div class="chart-title">Success Rate</div><div class="chart-box"><canvas id="rate"></canvas></div></div>
+</section>
+<section class="table-card"><div class="table-head"><strong>Detail Performance PIC</strong><span class="pill" id="rowCount">0 rows</span></div>
+<div class="table-wrap"><table><thead><tr><th>PIC</th><th>Bulan</th><th>Leads</th><th>Closing</th><th>Success Rate</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+<footer>
+Untuk mode semi-dinamis, isi <code>SHEET_CSV_URL</code> di <code>app.js</code> dengan URL CSV Google Sheets.
+Setelah itu Anda cukup mengubah Google Sheets; dashboard mengambil data terbaru saat halaman dibuka/di-refresh.
+</footer>
+</div>
+<script src="app.js"></script>
+</body></html>
